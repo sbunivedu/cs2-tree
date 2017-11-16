@@ -49,4 +49,28 @@ public class BinaryTree{
     }
     return result;
   }
+
+  public String preorder(){
+    String result = "";
+    result += this.toString();
+    if(left != null){
+      result += left.preorder();
+    }
+    if(right != null){
+      result += right.preorder();
+    }
+    return result;
+  }
+
+  public String postorder(){
+    String result = "";
+    if(left != null){
+      result += left.postorder();
+    }
+    if(right != null){
+      result += right.postorder();
+    }
+    result += this.toString();
+    return result;
+  }
 }

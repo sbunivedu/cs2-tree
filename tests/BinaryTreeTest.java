@@ -14,7 +14,14 @@ public class BinaryTreeTest{
     BinaryTree tree = new BinaryTree("A", t4, t3);
 
     // test traversal methods
+    System.out.println("test inorder traversal");
     System.out.println("expect:\tBADCE");
     System.out.println("got:\t"+tree.inorder());
+    System.out.println("test preorder traversal");
+    System.out.println("expect:\tABCDE");
+    System.out.println("got:\t"+tree.preorder());
+    System.out.println("test postorder traversal");
+    System.out.println("expect:\tBDECA");
+    System.out.println("got:\t"+tree.postorder());
   }
 }
