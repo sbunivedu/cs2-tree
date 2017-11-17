@@ -6,6 +6,12 @@ public class BinaryTreeTest{
   public static void main(String[] args){
     /* create a tree as follows
 
+         /----- E
+ /----- C
+ |       \----- D
+A
+ \----- B
+
     */
     BinaryTree t1 = new BinaryTree("D", null, null);
     BinaryTree t2 = new BinaryTree("E", null, null);
@@ -23,5 +29,8 @@ public class BinaryTreeTest{
     System.out.println("test postorder traversal");
     System.out.println("expect:\tBDECA");
     System.out.println("got:\t"+tree.postorder());
+
+    // test pretty print
+    tree.printTree();
   }
 }

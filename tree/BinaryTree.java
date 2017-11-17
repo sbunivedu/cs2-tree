@@ -73,4 +73,30 @@ public class BinaryTree{
     result += this.toString();
     return result;
   }
+
+  public void printTree(){
+    if (right != null){
+      right.recPrint(true, "");
+    }
+    System.out.println(this);
+    if (left != null){
+      left.recPrint(false, "");
+    }
+  }
+
+  private void recPrint(boolean isRight, String indent) {
+    if (right != null){
+      right.recPrint(true, indent + (isRight ? "        " : " |      "));
+    }
+    System.out.print(indent);
+    if (isRight) {
+      System.out.print(" /");
+    } else {
+      System.out.print(" \\");
+    }
+    System.out.println("----- "+this);
+    if (left != null) {
+      left.recPrint(false, indent + (isRight ? " |      " : "        "));
+    }
+  }
 }
