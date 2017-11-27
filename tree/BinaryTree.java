@@ -1,36 +1,36 @@
 package tree;
 
-public class BinaryTree{
-  private Object element;
-  protected BinaryTree left, right;
+public class BinaryTree<T>{
+  private T element;
+  protected BinaryTree<T> left, right;
 
-  public BinaryTree(Object element, BinaryTree left, BinaryTree right){
+  public BinaryTree(T element, BinaryTree<T> left, BinaryTree<T> right){
     this.element = element;
     this.left = left;
     this.right = right;
   }
 
-  public Object getElement(){
+  public T getElement(){
     return element;
   }
 
-  public BinaryTree getLeft(){
+  public BinaryTree<T> getLeft(){
     return left;
   }
 
-  public BinaryTree getRight(){
+  public BinaryTree<T> getRight(){
     return right;
   }
 
-  public void setElement(Object element){
+  public void setElement(T element){
     this.element = element;
   }
 
-  public void setLeft(BinaryTree node){
+  public void setLeft(BinaryTree<T> node){
     left = node;
   }
 
-  public void setRight(BinaryTree node){
+  public void setRight(BinaryTree<T> node){
     right = node;
   }
 

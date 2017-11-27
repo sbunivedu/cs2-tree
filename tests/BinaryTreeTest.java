@@ -6,18 +6,18 @@ public class BinaryTreeTest{
   public static void main(String[] args){
     /* create a tree as follows
 
-         /----- E
- /----- C
- |       \----- D
-A
- \----- B
+             /----- E
+     /----- C
+     |       \----- D
+    A
+     \----- B
 
     */
-    BinaryTree t1 = new BinaryTree("D", null, null);
-    BinaryTree t2 = new BinaryTree("E", null, null);
-    BinaryTree t3 = new BinaryTree("C", t1, t2);
-    BinaryTree t4 = new BinaryTree("B", null, null);
-    BinaryTree tree = new BinaryTree("A", t4, t3);
+    BinaryTree<String> t1 = new BinaryTree<String>("D", null, null);
+    BinaryTree<String> t2 = new BinaryTree<String>("E", null, null);
+    BinaryTree<String> t3 = new BinaryTree<String>("C", t1, t2);
+    BinaryTree<String> t4 = new BinaryTree<String>("B", null, null);
+    BinaryTree<String> tree = new BinaryTree<String>("A", t4, t3);
 
     // test traversal methods
     System.out.println("test inorder traversal");
