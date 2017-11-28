@@ -1,36 +1,63 @@
 package tree;
 
-public class BinarySearchTree extends BinaryTree{
-  private String key;
+import tree.exceptions.NonComparableElementException;
 
-  public BinarySearchTree(String key, Object element){
+public class BinarySearchTree<T> extends BinaryTree<T>{
+  public BinarySearchTree(T element){
     super(element, null, null);
-    this.key = key;
+    if(!(element instanceof Comparable)){
+      throw new NonComparableElementException("BinarySearchTree");
+    }
   }
 
-  public void insert(BinarySearchTree tree){
-    if (tree.key.compareTo (this.key) == 0) {
-      // replace current node
-      this.setElement(tree.getElement());
+  public void insert(T element){
+    if(!(element instanceof Comparable)){
+      throw new NonComparableElementException("BinarySearchTree");
     }
-    else if (tree.key.compareTo (this.key) < 0){
+    Comparable<T> current = (Comparable<T>) this.element;
+    BinarySearchTree<T> node = new BinarySearchTree<T>(element);
+    if(current.compareTo(element) == 0) {
+      // replace current node
+      this.element = element;
+    }
+    else if(current.compareTo(element) > 0){
       // insert in left subtree
       if (left == null){
-        this.setLeft(tree);
+        left = node;
       }else {
-        ((BinarySearchTree) getLeft()).insert(tree);
+        ((BinarySearchTree<T>) left).insert(element);
       }
     }else{
       // insert in right subtree
       if (right == null){
-        this.setRight(tree);
+        right = node;
       }else {
-        ((BinarySearchTree) getRight()).insert(tree);
+        ((BinarySearchTree<T>) right).insert(element);
       }
     }
   }
 
-  public String toString(){
-    return key;
+  public T search(T element){
+    if(!(element instanceof Comparable)){
+      throw new NonComparableElementException("BinarySearchTree");
+    }
+    Comparable current = (Comparable) this.element;
+    if(current.compareTo(element) == 0){
+      return element;
+    }else if(current.compareTo(element) < 0){
+      // search in left subtree
+      if(left == null){
+        return null;
+      }else{
+        return ((BinarySearchTree<T>) left).search(element);
+      }
+    }else{
+      // search in right subtree
+      if(right == null){
+        return null;
+      }else{
+        return ((BinarySearchTree<T>) right).search(element);
+      }
+    }
   }
 }

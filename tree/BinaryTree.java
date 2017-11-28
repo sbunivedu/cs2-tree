@@ -1,7 +1,7 @@
 package tree;
 
 public class BinaryTree<T>{
-  private T element;
+  protected T element;
   protected BinaryTree<T> left, right;
 
   public BinaryTree(T element, BinaryTree<T> left, BinaryTree<T> right){
