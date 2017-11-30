@@ -1,39 +1,29 @@
 package tree;
 
 import tree.exceptions.NonComparableElementException;
+import tree.exceptions.EmptyCollectionException;
 
 public class BinarySearchTree<T> extends BinaryTree<T>{
+  public BinarySearchTree(){
+    super();
+  }
+
   public BinarySearchTree(T element){
-    super(element, null, null);
     if(!(element instanceof Comparable)){
       throw new NonComparableElementException("BinarySearchTree");
     }
+    root = new BinarySearchTreeNode<T>(element);
   }
 
   public void insert(T element){
     if(!(element instanceof Comparable)){
       throw new NonComparableElementException("BinarySearchTree");
     }
-    Comparable<T> current = (Comparable<T>) this.element;
-    BinarySearchTree<T> node = new BinarySearchTree<T>(element);
-    if(current.compareTo(element) == 0) {
-      // replace current node
-      this.element = element;
-    }
-    else if(current.compareTo(element) > 0){
-      // insert in left subtree
-      if (left == null){
-        left = node;
-      }else {
-        ((BinarySearchTree<T>) left).insert(element);
-      }
+    BinarySearchTreeNode<T> node = new BinarySearchTreeNode<T>(element);
+    if(isEmpty()){
+      root = node;
     }else{
-      // insert in right subtree
-      if (right == null){
-        right = node;
-      }else {
-        ((BinarySearchTree<T>) right).insert(element);
-      }
+      ((BinarySearchTreeNode<T>) root).insert(node);
     }
   }
 
@@ -41,23 +31,19 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
     if(!(element instanceof Comparable)){
       throw new NonComparableElementException("BinarySearchTree");
     }
-    Comparable current = (Comparable) this.element;
-    if(current.compareTo(element) == 0){
-      return element;
-    }else if(current.compareTo(element) > 0){
-      // search in left subtree
-      if(left == null){
-        return null;
-      }else{
-        return ((BinarySearchTree<T>) left).search(element);
-      }
-    }else{
-      // search in right subtree
-      if(right == null){
-        return null;
-      }else{
-        return ((BinarySearchTree<T>) right).search(element);
-      }
+
+    return ((BinarySearchTreeNode<T>) root).search(element);
+  }
+
+  public void delete(T element){
+    if(isEmpty()){
+      throw new EmptyCollectionException("BinarySearchTree");
     }
+
+    if(!(element instanceof Comparable)){
+      throw new NonComparableElementException("BinarySearchTree");
+    }
+
+    root = ((BinarySearchTreeNode<T>) root).delete(element);
   }
 }

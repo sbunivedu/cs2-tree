@@ -13,7 +13,7 @@ public class BinarySearchTreeTest{
     // test insert
     System.out.println("expect:\tADHJKO");
     System.out.println("got:\t"+tree.inorder());
-    tree.printTree();
+    tree.print();
 
     // test search
     System.out.println("expect:\tD");
@@ -21,5 +21,11 @@ public class BinarySearchTreeTest{
 
     System.out.println("expect:\tnull");
     System.out.println("got:\t"+tree.search("F"));
+
+    // test delete
+    System.out.println("expect:\tAHJKO");
+    tree.delete("D");
+    System.out.println("got:\t"+tree.inorder());
+    tree.print();
   }
 }

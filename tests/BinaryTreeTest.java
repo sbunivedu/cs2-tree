@@ -1,23 +1,28 @@
 package tests;
 
 import tree.BinaryTree;
+import tree.BinaryTreeNode;
 
 public class BinaryTreeTest{
   public static void main(String[] args){
     /* create a tree as follows
-
              /----- E
      /----- C
      |       \----- D
     A
      \----- B
-
     */
-    BinaryTree<String> t1 = new BinaryTree<String>("D", null, null);
-    BinaryTree<String> t2 = new BinaryTree<String>("E", null, null);
-    BinaryTree<String> t3 = new BinaryTree<String>("C", t1, t2);
-    BinaryTree<String> t4 = new BinaryTree<String>("B", null, null);
-    BinaryTree<String> tree = new BinaryTree<String>("A", t4, t3);
+    BinaryTree<String> tree = new BinaryTree<String>("A");
+    BinaryTreeNode<String> root = tree.getRoot();
+
+    BinaryTreeNode<String> nodeE = new BinaryTreeNode<String>("E");
+    BinaryTreeNode<String> nodeD = new BinaryTreeNode<String>("D");
+    BinaryTreeNode<String> nodeC = new BinaryTreeNode<String>("C");
+    nodeC.setLeft(nodeD);
+    nodeC.setRight(nodeE);
+    BinaryTreeNode<String> nodeB = new BinaryTreeNode<String>("B");
+    root.setLeft(nodeB);
+    root.setRight(nodeC);
 
     // test traversal methods
     System.out.println("test inorder traversal");
@@ -31,6 +36,6 @@ public class BinaryTreeTest{
     System.out.println("got:\t"+tree.postorder());
 
     // test pretty print
-    tree.printTree();
+    tree.print();
   }
 }
