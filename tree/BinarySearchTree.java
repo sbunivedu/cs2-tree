@@ -44,7 +44,7 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
     Comparable current = (Comparable) this.element;
     if(current.compareTo(element) == 0){
       return element;
-    }else if(current.compareTo(element) < 0){
+    }else if(current.compareTo(element) > 0){
       // search in left subtree
       if(left == null){
         return null;
