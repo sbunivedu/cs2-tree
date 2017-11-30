@@ -5,25 +5,42 @@ public class BinarySearchTreeNode<T> extends BinaryTreeNode<T>{
     super(element);
   }
 
-  public void insert(BinarySearchTreeNode<T> node){
-    Comparable<T> newElement = (Comparable<T>) node.element;
-    if(newElement.compareTo(element) == 0) {
+  public BinarySearchTreeNode<T> getLeft(){
+    return (BinarySearchTreeNode<T>) left;
+  }
+
+  public BinarySearchTreeNode<T> getRight(){
+    return (BinarySearchTreeNode<T>) right;
+  }
+
+  public void setLeft(BinarySearchTreeNode<T> node){
+    left = node;
+  }
+
+  public void setRight(BinarySearchTreeNode<T> node){
+    right = node;
+  }
+
+  public void insert(T element){
+    BinarySearchTreeNode<T> node = new BinarySearchTreeNode<T>(element);
+    Comparable<T> newElement = (Comparable<T>) element;
+    if(newElement.compareTo(this.element) == 0) {
       // replace current node
       this.element = element;
     }
-    else if(newElement.compareTo(element) < 0){
+    else if(newElement.compareTo(this.element) < 0){
       // insert in left
       if (left == null){
-        left = node;
+        setLeft(node);
       }else {
-        ((BinarySearchTreeNode<T>) left).insert(node);
+        getLeft().insert(element);
       }
     }else{
       // insert in right
       if (right == null){
-        right = node;
+        setRight(node);
       }else {
-        ((BinarySearchTreeNode<T>) right).insert(node);
+        getRight().insert(element);
       }
     }
   }
@@ -37,14 +54,14 @@ public class BinarySearchTreeNode<T> extends BinaryTreeNode<T>{
       if(left == null){
         return null;
       }else{
-        return ((BinarySearchTreeNode<T>) left).search(element);
+        return getLeft().search(element);
       }
     }else{
       // search in right
       if(right == null){
         return null;
       }else{
-        return ((BinarySearchTreeNode<T>) right).search(element);
+        return getRight().search(element);
       }
     }
   }
@@ -58,17 +75,17 @@ public class BinarySearchTreeNode<T> extends BinaryTreeNode<T>{
       }else if(right != null){
         // promote right child, graft left to be
         // the left most descendent of right
-        BinarySearchTreeNode<T> current = (BinarySearchTreeNode<T>) right;
+        BinarySearchTreeNode<T> current = getRight();
         while(current.left != null){
-          current = (BinarySearchTreeNode<T>) current.left;
+          current = current.getLeft();
         }
         current.left = left;
-        return (BinarySearchTreeNode<T>) right;
+        return getRight();
       }
     }else if(target.compareTo(this.element) < 0){
-      left = ((BinarySearchTreeNode<T>) left).delete(element);
+      left = getLeft().delete(element);
     }else{
-      right = ((BinarySearchTreeNode<T>) right).delete(element);
+      right = getRight().delete(element);
     }
     return this;
   }

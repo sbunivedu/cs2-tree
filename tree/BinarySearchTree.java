@@ -15,6 +15,10 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
     root = new BinarySearchTreeNode<T>(element);
   }
 
+  public BinarySearchTreeNode<T> getRoot(){
+    return (BinarySearchTreeNode<T>) root;
+  }
+
   public void insert(T element){
     if(!(element instanceof Comparable)){
       throw new NonComparableElementException("BinarySearchTree");
@@ -23,7 +27,7 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
     if(isEmpty()){
       root = node;
     }else{
-      ((BinarySearchTreeNode<T>) root).insert(node);
+      getRoot().insert(element);
     }
   }
 
@@ -32,7 +36,7 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
       throw new NonComparableElementException("BinarySearchTree");
     }
 
-    return ((BinarySearchTreeNode<T>) root).search(element);
+    return getRoot().search(element);
   }
 
   public void delete(T element){
@@ -44,6 +48,6 @@ public class BinarySearchTree<T> extends BinaryTree<T>{
       throw new NonComparableElementException("BinarySearchTree");
     }
 
-    root = ((BinarySearchTreeNode<T>) root).delete(element);
+    root = getRoot().delete(element);
   }
 }
