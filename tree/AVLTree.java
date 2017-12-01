@@ -35,4 +35,14 @@ public class AVLTree<T> extends BinarySearchTree<T>{
       root = getRoot().AVLInsert(element);
     }
   }
+
+  public void delete(T element){
+    if(!(element instanceof Comparable)){
+      throw new NonComparableElementException("AVLTree");
+    }
+    if(!isEmpty()){
+      // returns a potential new root due to rotations.
+      root = getRoot().AVLDelete(element);
+    }
+  }
 }

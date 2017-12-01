@@ -28,5 +28,32 @@ public class AVLTreeTest{
     System.out.println("got:\t"+tree.inorder());
     //Display the tree
     tree.print();
+
+    // test search
+    System.out.println("expect:\tE");
+    System.out.println("got:\t"+tree.search("E"));
+    System.out.println("expect:\tnull");
+    System.out.println("got:\t"+tree.search("K"));
+
+    // test AVLDelete
+    tree.delete("A");
+    System.out.println("expect:\tBCDEFGHIJ");
+    System.out.println("got:\t"+tree.inorder());
+    tree.print();
+
+    tree.delete("B");
+    System.out.println("expect:\tCDEFGHIJ");
+    System.out.println("got:\t"+tree.inorder());
+    tree.print();
+
+    tree.delete("C");
+    System.out.println("expect:\tDEFGHIJ");
+    System.out.println("got:\t"+tree.inorder());
+    tree.print();
+
+    tree.delete("G");
+    System.out.println("expect:\tDEFHIJ");
+    System.out.println("got:\t"+tree.inorder());
+    tree.print();
   }
 }
