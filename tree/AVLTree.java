@@ -15,11 +15,11 @@ public class AVLTree<T> extends BinarySearchTree<T>{
     return (AVLTreeNode<T>) root;
   }
 
-  public int depth(){
+  public int height(){
     if(isEmpty()){
       return 0;
     }else{
-      return getRoot().depth();
+      return getRoot().height();
     }
   }
 
