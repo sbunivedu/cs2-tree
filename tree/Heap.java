@@ -5,7 +5,7 @@ import tree.exceptions.EmptyCollectionException;
 
 // Max Heap
 public class Heap<T>{
-  private static final int DEFAULT_CAPACITY = 100;
+  private static final int DEFAULT_CAPACITY = 50;
   private int insertPoint; // location for new node
   private T[] tree;
 
@@ -16,6 +16,10 @@ public class Heap<T>{
 
   public boolean isEmpty(){
     return tree[0] == null;
+  }
+
+  public int size(){
+    return insertPoint;
   }
 
   public String toString(){
@@ -35,7 +39,7 @@ public class Heap<T>{
   }
 
   public void insert(T element){
-    if (insertPoint == tree.length){
+    if (insertPoint+1 == tree.length){
       expandCapacity();
     }
     tree[insertPoint] = element;
@@ -76,13 +80,14 @@ public class Heap<T>{
     if (insertPoint == 1){
       //there was only the root & it was plucked
       tree[0] = null;
+      insertPoint --;
     }else{
       //replace the root with the last node inserted
       tree[0] = tree[insertPoint-1];
       tree[insertPoint-1] = null;
+      insertPoint --;
       reHeapify(); //restore the heap property.
     }
-    insertPoint --;
     return result;
   }
 
@@ -104,11 +109,9 @@ public class Heap<T>{
 
   private int findSwapChild(int left, int right){
     int next = 0;
-    if((tree[left] == null) && (tree[right] == null)){
+    if(left >= insertPoint && right >= insertPoint){
       next = insertPoint;
-    }else if(tree[left] == null){
-      next = right;
-    }else if(tree[right] == null){
+    }else if(right >= insertPoint){
       next = left;
     }else if(((Comparable) tree[left]).compareTo(tree[right]) > 0){
       // pick larger of the two

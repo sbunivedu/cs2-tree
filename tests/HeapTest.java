@@ -21,5 +21,10 @@ public class HeapTest
       h.remove();
       System.out.println("Here is the heap: "+ h);
     }
+
+    for (int i = 0; i<100; i++){
+      h.insert(""+(100-i));
+    }
+    System.out.println("Here is the heap: "+ h);
   }
 }
